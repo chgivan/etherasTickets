@@ -23,10 +23,10 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 	public List<Flight> searchFlights(String to, String from) {
 		Query query = new Query();
 		
-		if(!to.isEmpty())
+		if(to != null)
 			query.addCriteria(Criteria.where("to").is(to));
 		
-		if(!from.isEmpty())
+		if(from != null)
 			query.addCriteria(Criteria.where("from").is(from));
 
 		return operations.find(query, Flight.class);
