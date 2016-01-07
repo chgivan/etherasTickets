@@ -26,7 +26,7 @@ public class FlightController {
 			@RequestParam(name="to" , required=false) String to,
 			@RequestParam(name="from" , required=false) String from
 	){
-		return new ResponseEntity(repository.searchFlights(to, from), HttpStatus.OK);
+		return new ResponseEntity<List<Flight>>(repository.searchFlights(to, from), HttpStatus.OK);
 	}
 	
 	
