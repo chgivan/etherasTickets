@@ -18,11 +18,17 @@ public class FlightRepositoryImpl implements CustomFlightRepository  {
 		this.operations = operations;
 	}
 
+
 	@Override
-	public List<Flight> searchFlights(String searchText) {
+	public List<Flight> searchFlights(String to, String from) {
 		Query query = new Query();
-		query.addCriteria(Criteria.where("to").is(searchText));
 		
+		if(!to.isEmpty())
+			query.addCriteria(Criteria.where("to").is(to));
+		
+		if(!from.isEmpty())
+			query.addCriteria(Criteria.where("from").is(from));
+
 		return operations.find(query, Flight.class);
 	}
 

@@ -23,25 +23,17 @@ public class FlightController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Flight>> getFlights(
-			@RequestParam(name="to" , required=false) String searchquery,
-			@RequestParam(name="limit" , required=false , defaultValue="20") int limit,
-			@RequestParam(name="offset" , required=false , defaultValue="0") int offset
+			@RequestParam(name="to" , required=false) String to,
+			@RequestParam(name="from" , required=false) String from
 	){
-		return  new ResponseEntity(repository.searchFlights(searchquery), HttpStatus.OK);
-	}
-	
-	
-	private String createSearchQuery(String query){
-		return String.format("{'to':'%s'}", query);
+		return new ResponseEntity(repository.searchFlights(to, from), HttpStatus.OK);
 	}
 	
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Flight> createFlight(@RequestParam(name="to" , required=false , defaultValue="N/A") String to){
-		Flight f = new Flight();
-		f.setTo(to);
-		f = repository.save(f);
-		return new ResponseEntity(f, HttpStatus.OK);
+	public ResponseEntity createFlight(@RequestBody Flight newFlight){
+		repository.save(newFlight);
+		return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	

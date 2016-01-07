@@ -6,8 +6,10 @@ public class Flight {
 	@Id
 	private String id;
 	
+	
+	
 	private String to;
-
+	private String from;
 	
 	public String getTo() {
 		return to;
@@ -15,5 +17,13 @@ public class Flight {
 
 	public void setTo(String to) {
 		this.to = to;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
 	}
 }
